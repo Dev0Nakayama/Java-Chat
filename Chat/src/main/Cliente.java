@@ -1,4 +1,4 @@
-package Cliente;
+package main;
 
 import java.io.*;
 import java.net.*;
@@ -22,16 +22,20 @@ public class Cliente {
 		//envia fluxo de dados
 		PrintWriter pr = new PrintWriter(s.getOutputStream());
 
-		System.out.println("Server Conectado");		
-		while(true) {
+		System.out.print("Insira nome: ");String nome = sc.nextLine();
+		System.out.println("Conectado");
+		String say;
+
+		do{
 		//recebe
 		String str = bf.readLine();
 		System.out.println("cliente:"+str);
 		
 		//manda
-		String say = sc.next();
+		System.out.print(nome+": ");say = sc.nextLine();
 		pr.println(say);
 		pr.flush();
-		}
+		}while(say.equals("exit") == false);
+		s.close();sc.close();
 	}
 }

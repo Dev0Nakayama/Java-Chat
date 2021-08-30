@@ -1,4 +1,4 @@
-package Serve;
+package main;
 
 import java.io.*;
 import java.net.*;
@@ -25,16 +25,21 @@ public class Serve {
 		//envia fluxo de dados
 		PrintWriter pr = new PrintWriter(s.getOutputStream());
 
-		System.out.println("Cliente Conectado");
-		while(true) {	
+		System.out.print("Insira nome: ");String nome = sc.nextLine();
+		System.out.println("Conectado");
+		String say;
+
+		do{	
 			//manda
-			String say = sc.next();
+			System.out.print(nome+": "); say = sc.nextLine();
 			pr.println(say);
 			pr.flush();
 
 			//recebe
 			String str = bf.readLine();
 			System.out.println("Serve:"+str);
-		}
+		}while(say.equals("exit") == false);
+		
+		ss.close();sc.close();
 	}
 }
